@@ -1,0 +1,32 @@
+#!/usr/bin/env ruby
+
+require 'thor'
+
+lib = File.expand_path('../../lib', __FILE__)
+$LOAD_PATH.unshift(lib)
+
+require 'api_gateway_dsl'
+
+module APIGatewayDSL
+  class CLI < Thor
+
+    desc 'json DIR', 'prints the Amazon API Gateway Gateway definition in the specified directory as JSON'
+    def json(dir)
+      puts JSON.pretty_generate(document(dir))
+    end
+
+    desc 'yaml DIR', 'prints the Amazon API Gateway definition in the specified directory as YAML'
+    def yaml(dir)
+      puts YAML.dump(document(dir))
+    end
+
+    private
+
+    def document(dir)
+      Document.load(dir).as_json
+    end
+
+  end
+end
+
+APIGatewayDSL::CLI.start(ARGV)

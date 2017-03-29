@@ -1,0 +1,69 @@
+# Greedy Endpoint for any HTTP method with HTTP proxy integration
+
+This example demonstrates how to specify a greedy endpoint which accepts any HTTP method for all paths below
+`/pets/*` and integrates with an HTTP downstream service at `https://petstore.example.com`.
+
+## Configuration
+
+* Beyond the path, the request accepts a header `Accept-Language` which is passed through to the downstream service.
+
+## Given
+
+* [`index.rb`](index.rb) (skipped for readability)
+
+* [`pets/proxy.rb`](pets/proxy.rb)
+
+  ```rb
+  ANY '/pets/{proxy+}' do
+    path   'proxy'
+    header 'Accept-Language'
+  
+    HTTP_PROXY_ANY 'https://petstore.example.com/{proxy}' do
+      path   'proxy'
+      header 'Accept-Language'
+    end
+  end
+  ```
+
+## Generates
+
+* [`index.yml`](index.yml)
+
+  ```yml
+  swagger: "2.0"
+  info:
+    version: "1.2.3"
+    title: "Greedy Endpoint for any HTTP method with HTTP proxy integration"
+    description: |
+      This example demonstrates how to specify a greedy endpoint which accepts any HTTP method for all paths below
+      `/pets/*` and integrates with an HTTP downstream service at `https://petstore.example.com`.
+  
+      ## Configuration
+  
+      * Beyond the path, the request accepts a header `Accept-Language` which is passed through to the downstream service.
+  host: "api.example.com"
+  schemes:
+    - "https"
+  paths:
+    /pets/{proxy+}:
+      x-amazon-apigateway-any-method:
+        parameters:
+          - name: "proxy"
+            in: "path"
+            required: true
+            type: "string"
+          - name: "Accept-Language"
+            in: "header"
+            required: false
+            type: "string"
+        responses: {}
+        x-amazon-apigateway-integration:
+          requestParameters:
+            integration.request.path.proxy: "method.request.path.proxy"
+            integration.request.header.Accept-Language: "method.request.header.Accept-Language"
+          uri: "https://petstore.example.com/{proxy}"
+          passthroughBehavior: "WHEN_NO_MATCH"
+          httpMethod: "ANY"
+          type: "http_proxy"
+  ```
+

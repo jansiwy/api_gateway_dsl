@@ -1,0 +1,9 @@
+#set( $inputRoot = $input.path('$') )
+{
+  "pet": {
+    "name": $input.json('$.pet.name')
+  }
+  "meta": {
+    "accept_language": "${util.escapeJavaScript($input.params('Accept-Language')).replaceAll("\\'","'")}"
+  }
+}
