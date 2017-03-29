@@ -1,3 +1,8 @@
+[![Build Status](https://travis-ci.org/jansiwy/api_gateway_dsl.svg?branch=master)](https://travis-ci.org/jansiwy/api_gateway_dsl)
+[![Code Climate](https://codeclimate.com/github/jansiwy/api_gateway_dsl/badges/gpa.svg)](https://codeclimate.com/github/jansiwy/api_gateway_dsl)
+[![Test Coverage](https://codeclimate.com/github/jansiwy/api_gateway_dsl/badges/coverage.svg)](https://codeclimate.com/github/jansiwy/api_gateway_dsl/coverage)
+[![Issue Count](https://codeclimate.com/github/jansiwy/api_gateway_dsl/badges/issue_count.svg)](https://codeclimate.com/github/jansiwy/api_gateway_dsl)
+
 # Amazon API Gateway DSL
 
 Ruby DSL to generate a [Amazon API Gateway](https://aws.amazon.com/api-gateway/) definition.
