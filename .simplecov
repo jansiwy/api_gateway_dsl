@@ -1,1 +1,2 @@
-SimpleCov.start 'test_frameworks'
+SimpleCov.command_name 'test:units'
+SimpleCov.start
