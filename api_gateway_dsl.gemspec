@@ -10,19 +10,21 @@ Gem::Specification.new do |s|
   s.summary       = 'Ruby DSL to generate an Amazon API Gateway definition'
   s.email         = 'api_gateway_dsl@jansiwy.de'
   s.authors       = ['Jan Sebastian Siwy']
+  s.homepage      = 'https://github.com/jansiwy/api_gateway_dsl'
+  s.license       = 'MIT'
 
   s.files         = `git ls-files`.split("\n")
-  s.executables   = `git ls-files -- bin/*`.split("\n")
+  s.executables   = ['api_gateway_dsl']
   s.test_files    = `git ls-files -- spec/*`.split("\n")
   s.require_paths = ['lib']
 
-  s.add_dependency 'activesupport'
-  s.add_dependency 'thor'
+  s.add_dependency 'activesupport', '~> 5.0'
+  s.add_dependency 'thor', '~> 0.19'
 
-  s.add_development_dependency 'rake'
-  s.add_development_dependency 'rspec'
-  s.add_development_dependency 'rspec-json_expectations'
+  s.add_development_dependency 'rake', '~> 12.0'
+  s.add_development_dependency 'rspec', '~> 3.5'
+  s.add_development_dependency 'rspec-json_expectations', '~> 2.1'
 
-  s.add_development_dependency 'codeclimate-test-reporter'
-  s.add_development_dependency 'simplecov'
+  s.add_development_dependency 'codeclimate-test-reporter', '~> 1.0'
+  s.add_development_dependency 'simplecov', '~> 0.14'
 end
